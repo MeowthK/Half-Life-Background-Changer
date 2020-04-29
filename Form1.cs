@@ -2,15 +2,41 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using TeximpNet;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Half_Life_Background_Changer
 {
     public partial class Form1 : Form
     {
+        private LoadingDialog loaddlg;
+
+        private static void ChangeProgress(LoadingDialog ld, int progress)
+        {
+            if (ld == null)
+                return;
+
+            if (ld.InvokeRequired)
+                ld.Invoke(new Action(() =>
+                {
+                    ld.LoadPercent = progress;
+                }));
+            else
+                ld.LoadPercent = progress;
+        }
+
+        private void StartProgress()
+        {
+            var tstart = new ThreadStart(() => {
+                loaddlg = new LoadingDialog();
+                loaddlg.LoadPercent = 0;
+                loaddlg.ShowDialog();
+            });
+            var thread = new Thread(tstart);
+            thread.Start();
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -28,13 +54,20 @@ namespace Half_Life_Background_Changer
 
                     if (fbd.SelectedPath != string.Empty)
                     {
+                        StartProgress();
+
                         if (File.Exists(fbd.SelectedPath + "\\BackgroundLayout.txt"))
                         {
                             PreviewPane.BackgroundLocation = fbd.SelectedPath;
+                            ChangeProgress(loaddlg, 50);
+
                             PreviewPane.BackgroundLayoutLocation = fbd.SelectedPath + "\\BackgroundLayout.txt";
+                            ChangeProgress(loaddlg, 99);
                         }
                         else
                         {
+                            ChangeProgress(loaddlg, 25);
+
                             // get half-life root directory
                             string resourcePath = Path.GetDirectoryName(fbd.SelectedPath);
                             resourcePath = Path.GetDirectoryName(resourcePath);
@@ -50,8 +83,12 @@ namespace Half_Life_Background_Changer
 
                                 if (File.Exists(resourcePath + "\\BackgroundLayout.txt"))
                                 {
+                                    ChangeProgress(loaddlg, 50);
+
                                     PreviewPane.BackgroundLocation = fbd.SelectedPath;
+                                    ChangeProgress(loaddlg, 75);
                                     PreviewPane.BackgroundLayoutLocation = resourcePath + "\\BackgroundLayout.txt";
+                                    ChangeProgress(loaddlg, 99);
                                 }
                                 else
                                 {
@@ -60,6 +97,9 @@ namespace Half_Life_Background_Changer
                                 }
                             }
                         }
+
+                        ChangeProgress(loaddlg, 100);
+                        Activate();
                     }
                     else
                         Application.Exit();
@@ -83,6 +123,14 @@ namespace Half_Life_Background_Changer
                 {
                     AboutBox.ShowBox();
                 };
+
+                PreviewPane.BackgroundImageChanged += (obj, ev) =>
+                {
+                    if (PreviewPane.BackgroundImage != null)
+                        bxLblDim.Text = "Image Size: " + PreviewPane.BackgroundImage.Width + " x " + PreviewPane.BackgroundImage.Height;
+                    else
+                        bxLblDim.Text = "No Image Loaded.";
+                };
             };
         }
 
@@ -93,6 +141,13 @@ namespace Half_Life_Background_Changer
                 MessageBox.Show("No changes were made.", "Operation Aborted");
                 return;
             }
+
+            ACResult result = ApplyConfirmation.ShowConfirmation();
+
+            if (result == ACResult.IGNORE)
+                return;
+
+            StartProgress();
 
             int width = int.Parse(tbCWidth.Text);
             int height = int.Parse(tbCHeight.Text);
@@ -105,6 +160,8 @@ namespace Half_Life_Background_Changer
 
             string newBGPath = PreviewPane.BackgroundLocation + "\\background";
 
+            ChangeProgress(loaddlg, 25);
+
             if (!Directory.Exists(newBGPath))
                 Directory.CreateDirectory(newBGPath);
 
@@ -114,8 +171,10 @@ namespace Half_Life_Background_Changer
                 Directory.CreateDirectory(newBGPath);
 
             Bitmap[,] newBmps = PreviewPane.ChopNewImage(width, height);
+            ChangeProgress(loaddlg, 50);
 
             string[] newBmpsLocations = PreviewPane.NewBitmapLocations;
+            ChangeProgress(loaddlg, 75);
 
             int bmpWCount = newBmps.GetLength(0);
             int bmpHCount = newBmps.Length;
@@ -123,6 +182,7 @@ namespace Half_Life_Background_Changer
             int y = 0;
 
             string backgroundLayoutContents = "resolution\t" + width + "\t" + height + "\n";
+            string errorMsg = string.Empty;
             foreach (var bmpLoc in newBmpsLocations)
             {
                 string bmpRelPath = PreviewPanel.RemoveExtraSpaces(bmpLoc).Split()[0];
@@ -134,13 +194,14 @@ namespace Half_Life_Background_Changer
                     newBmps[x, y].Save(bmpPath + ".bmp");
                     Surface surf = Surface.LoadFromFile(bmpPath + ".bmp", ImageLoadFlags.TARGA_LoadRGB888);
                     surf.SaveToFile(ImageFormat.TARGA, bmpPath, ImageSaveFlags.Default);
-
-                    // cleanup!!!
-                    File.Delete(bmpPath + ".bmp");
-                } catch
-                {
-                    MessageBox.Show("File IO Error. File has been probably corrupted: " + bmpPath);
                 }
+                catch
+                {
+                    errorMsg += "File has been probably corrupted: " + bmpPath + "\n";
+                }
+
+                // cleanup!!!
+                File.Delete(bmpPath + ".bmp");
 
                 if (++x >= bmpWCount)
                 {
@@ -151,13 +212,17 @@ namespace Half_Life_Background_Changer
                 }
             }
 
-            ACResult result = ApplyConfirmation.ShowConfirmation();
+            ChangeProgress(loaddlg, 100);
+
+            if (errorMsg.Length > 0)
+            {
+                Activate();
+                MessageBox.Show("Background Change Failed! Permission to write to file was denied.\n" + errorMsg, "File IO Error");
+                return;
+            }
 
             switch (result)
             {
-                case ACResult.IGNORE:
-                    return;
-
                 case ACResult.BACKUP:
                     if (File.Exists(PreviewPane.BackgroundLocation + "\\BackgroundLayout.txt"))
                     {
@@ -183,6 +248,7 @@ namespace Half_Life_Background_Changer
             }
 
             MessageBox.Show("Successfully Changed Background Layout!\r\nDon't forget to match the in-game resolution with your newly created background.", "Changes Saved");
+            Activate();
         }
 
         private void ReplaceImage(object sender, EventArgs e)
@@ -195,7 +261,11 @@ namespace Half_Life_Background_Changer
 
                 ofd.FileOk += (o, ev) =>
                 {
+                    StartProgress();
+                    ChangeProgress(loaddlg, 50);
+
                     PreviewPane.BackgroundImage = Image.FromFile(ofd.FileName);
+                    ChangeProgress(loaddlg, 100);
                 };
 
                 ofd.ShowDialog();
@@ -210,7 +280,8 @@ namespace Half_Life_Background_Changer
             {
                 int size = int.Parse(tb.Text);
                 tb.Text = size.ToString();
-            } catch
+            }
+            catch
             {
                 tb.Text = tb == tbCWidth ? "800" : "600";
             }

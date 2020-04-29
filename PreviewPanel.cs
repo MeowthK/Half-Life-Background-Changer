@@ -152,7 +152,10 @@ namespace CSCSCH
             }
 
             if (missingFiles != string.Empty)
+            {
+                FindForm().Activate();
                 MessageBox.Show(missingFiles, "Dependency Error");
+            }
 
             loadedImage = new Bitmap(resolution.Width, resolution.Height);
 
@@ -203,6 +206,28 @@ namespace CSCSCH
             return newline.Trim();
         }
 
+        public string CardinalAlpha(int input)
+        {
+            if (input <= 0)
+                return "0";
+
+            string retVal = string.Empty;
+
+            while (input > 0)
+            {
+                var c = (char)(input % 27 + 'a' - 1);
+
+                if (c < 'a')
+                    c = '0';
+
+                retVal = retVal.Insert(0, c + "");
+
+                input /= 27;
+            }
+
+            return retVal;
+        }
+
         public Bitmap[,] ChopNewImage(int NewWidth, int NewHeight)
         {
             Size sz = new Size(NewWidth, NewHeight);
@@ -228,7 +253,7 @@ namespace CSCSCH
             {
                 for (int x = 0; x < widthChopCount; x++)
                 {
-                    string chopLine = "resource/background/HLBC/" + NewHeight + "_" + (y + 1) + "_" + ((char)('a' + x)) + ".tga" + "\tscaled\t" + (x * 256) + "\t" + (y * 256);
+                    string chopLine = "resource/background/HLBC/" + NewHeight + "_" + (y + 1) + "_" + CardinalAlpha(x + 1) + ".tga" + "\tscaled\t" + (x * 256) + "\t" + (y * 256);
                     chopSizes.Add(chopLine);
                 }
             }

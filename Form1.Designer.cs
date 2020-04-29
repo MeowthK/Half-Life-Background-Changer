@@ -30,8 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.PreviewPane = new CSCSCH.PreviewPanel();
+            this.uLabel9 = new Half_Life_Background_Changer.ULabel();
+            this.uLabel8 = new Half_Life_Background_Changer.ULabel();
+            this.uLabel7 = new Half_Life_Background_Changer.ULabel();
+            this.uLabel6 = new Half_Life_Background_Changer.ULabel();
             this.mbAbout = new CSCSCH.MetroBox();
-            this.uLabel5 = new Half_Life_Background_Changer.ULabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.metroBox4 = new CSCSCH.MetroBox();
             this.uLabel2 = new Half_Life_Background_Changer.ULabel();
@@ -42,14 +45,12 @@
             this.tbCWidth = new System.Windows.Forms.TextBox();
             this.tbCHeight = new System.Windows.Forms.TextBox();
             this.mbApply = new CSCSCH.MetroBox();
-            this.uLabel4 = new Half_Life_Background_Changer.ULabel();
             this.divider1 = new CSCSCH.Divider();
             this.mbReplaceImage = new CSCSCH.MetroBox();
             this.uLabel1 = new Half_Life_Background_Changer.ULabel();
-            this.uLabel6 = new Half_Life_Background_Changer.ULabel();
-            this.uLabel7 = new Half_Life_Background_Changer.ULabel();
-            this.uLabel8 = new Half_Life_Background_Changer.ULabel();
-            this.uLabel9 = new Half_Life_Background_Changer.ULabel();
+            this.uLabel4 = new Half_Life_Background_Changer.ULabel();
+            this.uLabel5 = new Half_Life_Background_Changer.ULabel();
+            this.bxLblDim = new CSCSCH.BoxedLabel();
             this.PreviewPane.SuspendLayout();
             this.mbAbout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -66,6 +67,7 @@
             this.PreviewPane.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PreviewPane.BackgroundLayoutLocation = null;
             this.PreviewPane.BackgroundLocation = null;
+            this.PreviewPane.Controls.Add(this.bxLblDim);
             this.PreviewPane.Controls.Add(this.uLabel9);
             this.PreviewPane.Controls.Add(this.uLabel8);
             this.PreviewPane.Controls.Add(this.uLabel7);
@@ -77,6 +79,70 @@
             this.PreviewPane.Name = "PreviewPane";
             this.PreviewPane.Size = new System.Drawing.Size(624, 361);
             this.PreviewPane.TabIndex = 0;
+            // 
+            // uLabel9
+            // 
+            this.uLabel9.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel9.ClickedColor = System.Drawing.Color.Orange;
+            this.uLabel9.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.uLabel9.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uLabel9.Enabled = false;
+            this.uLabel9.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uLabel9.ForeColor = System.Drawing.Color.Silver;
+            this.uLabel9.Location = new System.Drawing.Point(0, 161);
+            this.uLabel9.Name = "uLabel9";
+            this.uLabel9.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.uLabel9.Size = new System.Drawing.Size(624, 30);
+            this.uLabel9.TabIndex = 9;
+            this.uLabel9.Text = "New Game";
+            // 
+            // uLabel8
+            // 
+            this.uLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel8.ClickedColor = System.Drawing.Color.Orange;
+            this.uLabel8.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.uLabel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uLabel8.Enabled = false;
+            this.uLabel8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uLabel8.ForeColor = System.Drawing.Color.Silver;
+            this.uLabel8.Location = new System.Drawing.Point(0, 191);
+            this.uLabel8.Name = "uLabel8";
+            this.uLabel8.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.uLabel8.Size = new System.Drawing.Size(624, 30);
+            this.uLabel8.TabIndex = 8;
+            this.uLabel8.Text = "Create Game";
+            // 
+            // uLabel7
+            // 
+            this.uLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel7.ClickedColor = System.Drawing.Color.Orange;
+            this.uLabel7.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.uLabel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uLabel7.Enabled = false;
+            this.uLabel7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uLabel7.ForeColor = System.Drawing.Color.Silver;
+            this.uLabel7.Location = new System.Drawing.Point(0, 221);
+            this.uLabel7.Name = "uLabel7";
+            this.uLabel7.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.uLabel7.Size = new System.Drawing.Size(624, 30);
+            this.uLabel7.TabIndex = 7;
+            this.uLabel7.Text = "Options";
+            // 
+            // uLabel6
+            // 
+            this.uLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel6.ClickedColor = System.Drawing.Color.Orange;
+            this.uLabel6.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.uLabel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uLabel6.Enabled = false;
+            this.uLabel6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uLabel6.ForeColor = System.Drawing.Color.Silver;
+            this.uLabel6.Location = new System.Drawing.Point(0, 251);
+            this.uLabel6.Name = "uLabel6";
+            this.uLabel6.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.uLabel6.Size = new System.Drawing.Size(624, 43);
+            this.uLabel6.TabIndex = 6;
+            this.uLabel6.Text = "Quit";
             // 
             // mbAbout
             // 
@@ -91,20 +157,6 @@
             this.mbAbout.Name = "mbAbout";
             this.mbAbout.Size = new System.Drawing.Size(16, 16);
             this.mbAbout.TabIndex = 5;
-            // 
-            // uLabel5
-            // 
-            this.uLabel5.BackColor = System.Drawing.Color.Transparent;
-            this.uLabel5.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uLabel5.Enabled = false;
-            this.uLabel5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uLabel5.ForeColor = System.Drawing.Color.Orange;
-            this.uLabel5.Location = new System.Drawing.Point(0, 0);
-            this.uLabel5.Name = "uLabel5";
-            this.uLabel5.Size = new System.Drawing.Size(16, 16);
-            this.uLabel5.TabIndex = 1;
-            this.uLabel5.Text = "?";
             // 
             // tableLayoutPanel1
             // 
@@ -147,6 +199,7 @@
             // uLabel2
             // 
             this.uLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel2.ClickedColor = System.Drawing.Color.Orange;
             this.uLabel2.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.uLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uLabel2.Enabled = false;
@@ -155,7 +208,7 @@
             this.uLabel2.Location = new System.Drawing.Point(3, 3);
             this.uLabel2.Name = "uLabel2";
             this.uLabel2.Size = new System.Drawing.Size(144, 27);
-            this.uLabel2.TabIndex = 1;
+            this.uLabel2.TabIndex = 5;
             this.uLabel2.Text = "RESOLUTION:";
             // 
             // cbResolutions
@@ -168,6 +221,7 @@
             "640 x 480",
             "800 x 600",
             "1024 x 768",
+            "1280 x 800",
             "Custom"});
             this.cbResolutions.Location = new System.Drawing.Point(3, 30);
             this.cbResolutions.Name = "cbResolutions";
@@ -192,6 +246,7 @@
             // uLabel3
             // 
             this.uLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel3.ClickedColor = System.Drawing.Color.Orange;
             this.uLabel3.ContentAlignment = System.Drawing.ContentAlignment.BottomCenter;
             this.uLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uLabel3.Enabled = false;
@@ -256,20 +311,6 @@
             this.mbApply.Size = new System.Drawing.Size(150, 54);
             this.mbApply.TabIndex = 2;
             // 
-            // uLabel4
-            // 
-            this.uLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.uLabel4.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uLabel4.Enabled = false;
-            this.uLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uLabel4.ForeColor = System.Drawing.Color.OrangeRed;
-            this.uLabel4.Location = new System.Drawing.Point(0, 0);
-            this.uLabel4.Name = "uLabel4";
-            this.uLabel4.Size = new System.Drawing.Size(150, 54);
-            this.uLabel4.TabIndex = 1;
-            this.uLabel4.Text = "APPLY CHANGES";
-            // 
             // divider1
             // 
             this.divider1.BackColor = System.Drawing.Color.Transparent;
@@ -300,6 +341,7 @@
             // uLabel1
             // 
             this.uLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel1.ClickedColor = System.Drawing.Color.Orange;
             this.uLabel1.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.uLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uLabel1.Enabled = false;
@@ -308,68 +350,54 @@
             this.uLabel1.Location = new System.Drawing.Point(0, 0);
             this.uLabel1.Name = "uLabel1";
             this.uLabel1.Size = new System.Drawing.Size(150, 54);
-            this.uLabel1.TabIndex = 0;
+            this.uLabel1.TabIndex = 6;
             this.uLabel1.Text = "REPLACE IMAGE";
             // 
-            // uLabel6
+            // uLabel4
             // 
-            this.uLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.uLabel6.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.uLabel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uLabel6.Enabled = false;
-            this.uLabel6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uLabel6.ForeColor = System.Drawing.Color.Silver;
-            this.uLabel6.Location = new System.Drawing.Point(0, 251);
-            this.uLabel6.Name = "uLabel6";
-            this.uLabel6.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.uLabel6.Size = new System.Drawing.Size(624, 43);
-            this.uLabel6.TabIndex = 6;
-            this.uLabel6.Text = "Quit";
+            this.uLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel4.ClickedColor = System.Drawing.Color.Orange;
+            this.uLabel4.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uLabel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uLabel4.Enabled = false;
+            this.uLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uLabel4.ForeColor = System.Drawing.Color.OrangeRed;
+            this.uLabel4.Location = new System.Drawing.Point(0, 0);
+            this.uLabel4.Name = "uLabel4";
+            this.uLabel4.Size = new System.Drawing.Size(150, 54);
+            this.uLabel4.TabIndex = 7;
+            this.uLabel4.Text = "APPLY CHANGES";
             // 
-            // uLabel7
+            // uLabel5
             // 
-            this.uLabel7.BackColor = System.Drawing.Color.Transparent;
-            this.uLabel7.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.uLabel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uLabel7.Enabled = false;
-            this.uLabel7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uLabel7.ForeColor = System.Drawing.Color.Silver;
-            this.uLabel7.Location = new System.Drawing.Point(0, 221);
-            this.uLabel7.Name = "uLabel7";
-            this.uLabel7.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.uLabel7.Size = new System.Drawing.Size(624, 30);
-            this.uLabel7.TabIndex = 7;
-            this.uLabel7.Text = "Options";
+            this.uLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.uLabel5.ClickedColor = System.Drawing.Color.Orange;
+            this.uLabel5.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uLabel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uLabel5.Enabled = false;
+            this.uLabel5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uLabel5.ForeColor = System.Drawing.Color.Orange;
+            this.uLabel5.Location = new System.Drawing.Point(0, 0);
+            this.uLabel5.Name = "uLabel5";
+            this.uLabel5.Size = new System.Drawing.Size(16, 16);
+            this.uLabel5.TabIndex = 7;
+            this.uLabel5.Text = "?";
             // 
-            // uLabel8
+            // bxLblDim
             // 
-            this.uLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.uLabel8.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.uLabel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uLabel8.Enabled = false;
-            this.uLabel8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uLabel8.ForeColor = System.Drawing.Color.Silver;
-            this.uLabel8.Location = new System.Drawing.Point(0, 191);
-            this.uLabel8.Name = "uLabel8";
-            this.uLabel8.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.uLabel8.Size = new System.Drawing.Size(624, 30);
-            this.uLabel8.TabIndex = 8;
-            this.uLabel8.Text = "Create Game";
-            // 
-            // uLabel9
-            // 
-            this.uLabel9.BackColor = System.Drawing.Color.Transparent;
-            this.uLabel9.ContentAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.uLabel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uLabel9.Enabled = false;
-            this.uLabel9.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uLabel9.ForeColor = System.Drawing.Color.Silver;
-            this.uLabel9.Location = new System.Drawing.Point(0, 161);
-            this.uLabel9.Name = "uLabel9";
-            this.uLabel9.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.uLabel9.Size = new System.Drawing.Size(624, 30);
-            this.uLabel9.TabIndex = 9;
-            this.uLabel9.Text = "New Game";
+            this.bxLblDim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bxLblDim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.bxLblDim.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bxLblDim.ForeColor = System.Drawing.Color.Lime;
+            this.bxLblDim.HighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
+            this.bxLblDim.Highlighted = true;
+            this.bxLblDim.Location = new System.Drawing.Point(445, 3);
+            this.bxLblDim.Margin = new System.Windows.Forms.Padding(0);
+            this.bxLblDim.Name = "bxLblDim";
+            this.bxLblDim.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.bxLblDim.Size = new System.Drawing.Size(160, 17);
+            this.bxLblDim.TabIndex = 10;
+            this.bxLblDim.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -382,7 +410,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CS+ Background Changer";
-            this.TopMost = true;
             this.PreviewPane.ResumeLayout(false);
             this.mbAbout.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -410,15 +437,16 @@
         private System.Windows.Forms.TextBox tbCWidth;
         private System.Windows.Forms.TextBox tbCHeight;
         private CSCSCH.MetroBox mbAbout;
-        private ULabel uLabel1;
-        private ULabel uLabel2;
         private ULabel uLabel3;
-        private ULabel uLabel4;
-        private ULabel uLabel5;
         private ULabel uLabel9;
         private ULabel uLabel8;
         private ULabel uLabel7;
         private ULabel uLabel6;
+        private ULabel uLabel2;
+        private ULabel uLabel1;
+        private ULabel uLabel4;
+        private ULabel uLabel5;
+        private CSCSCH.BoxedLabel bxLblDim;
     }
 }
 

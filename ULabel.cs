@@ -7,12 +7,9 @@ namespace Half_Life_Background_Changer
 {
     public partial class ULabel : Control
     {
-        [Browsable(false)]
-        public new bool Enabled { get => base.Enabled; set => base.Enabled = value; }
-
         private ContentAlignment contentAlignment = ContentAlignment.MiddleLeft;
         public ContentAlignment ContentAlignment { get => contentAlignment; set { contentAlignment = value; Invalidate(); } }
-
+        public Color ClickedColor { get; set; } = Color.Orange;
         public override string Text { get => base.Text; set { base.Text = value; Invalidate(); } }
 
         protected override void OnPaddingChanged(EventArgs e)
@@ -27,7 +24,7 @@ namespace Half_Life_Background_Changer
             SetStyle(ControlStyles.UserPaint | ControlStyles.SupportsTransparentBackColor, true);
             DoubleBuffered = true;
             BackColor = Color.Transparent;
-            base.Enabled = false;
+            Enabled = false;
         }
 
         protected override void OnPaint(PaintEventArgs e)
